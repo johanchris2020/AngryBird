@@ -39,7 +39,7 @@ function setup(){
 
     bird = new Bird(100,100);
  // constrainedLog = new Log(230, 180, 80, PI/2);
-    sling = new SlingShot(bird.body,{x: 200, y: 100});
+    sling = new SlingShot(bird.body,{x: 200, y: 50});
 }
 
 function draw(){
