@@ -11,14 +11,21 @@ class SlingShot {
      fly(){
       this.chain.bodyA = null;
      }
+
+     attach(body){
+      this.chain.bodyA = body;
+     }
+
      display(){
         image(this.sling1, 200, 20);
         image(this.sling2, 170, 20);
+
       if(this.chain.bodyA){
       var pointA = this.chain.bodyA.position;
       var pointB = this.pointB;
       push();
       stroke(48,22,8);
+
       if(pointA.x < 220){
          strokeWeight(7);
          line(pointA.x - 20, pointA.y, pointB.x - 10, pointB.y);
