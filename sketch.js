@@ -85,3 +85,9 @@ function keyPressed(){
       sling.attach(bird.body); 
     }
 }
+
+async function getTime(){
+    var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
+    var responseJSON = await response.json();
+    console.log(responseJSON);
+}
