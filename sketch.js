@@ -12,14 +12,15 @@ var pig1, pig2;
 var log1, log2, log3, log4, constrainedLog;
 var bird;
 var backgroundImage;
+var score = 0;
 
 function preload(){
-backgroundImage = loadImage("sprites/bg.png")
+//backgroundImage = loadImage("sprites/bg.png")
+getTime();
 }
 
 function setup(){
     var canvas = createCanvas(1200,400);
-
     engine = Engine.create();
     world = engine.world;
     ground = new Ground(600,height,1200,20);
@@ -44,18 +45,25 @@ function setup(){
 }
 
 function draw(){
+    if(backgroundImage){
     background(backgroundImage);
+    }
+    fill("white");
+    textSize(25);
+    text("Score: "+score, 600,50);
     Engine.update(engine);
     box1.display();
     box2.display();
     ground.display();
     platform.display();
     pig1.display();
+    pig1.score();
     log1.display();
 
     box3.display();
     box4.display();
     pig2.display();
+    pig2.score();
     log2.display();
 
     box5.display();
@@ -65,6 +73,7 @@ function draw(){
     bird.display();
 //  constrainedLog.display();
     sling.display();
+
 
     
 }
@@ -86,8 +95,19 @@ function keyPressed(){
     }
 }
 
-async function getTime(){
-    var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
-    var responseJSON = await response.json();
-    console.log(responseJSON);
+ async function getTime(){
+    var response = await fetch("https://worldtimeapi.org/api/timezone/Europe/London");
+    var responseJSON =  await response.json();
+    
+    var datetime = responseJSON.datetime;
+    var hour = datetime.slice(11,13);
+    
+    if(hour >= 7 && hour <= 19){
+        bg = "sprites/bg.png";
+    }
+    else{
+        bg = "sprites/bg2.jpg";
+    }
+    backgroundImage = loadImage(bg);
+    console.log(backgroundImage)
 }
